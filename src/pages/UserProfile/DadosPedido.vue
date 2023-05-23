@@ -142,7 +142,7 @@ import MarcacaoErro from "../Notifications/MarcacaoErro.vue";
 export default {
   data() {
     const idMarcacao = this.$route.params.id;
-    let marcacoesData = JSON.parse(localStorage.getItem("marcacoes")) || {};
+    let marcacoesData = JSON.parse(localStorage.getItem("pedidos")) || {};
     return {
       marcacoes: marcacoesData.find(objeto => objeto.id_marcacao === idMarcacao) || {},
       funcionarioSelecionado: null,
@@ -153,10 +153,10 @@ export default {
     confirmarMarcacao() {
       if (this.funcionarioSelecionado !== null) {
         const idMarcacao = this.$route.params.id;
-        let marcacoesData = JSON.parse(localStorage.getItem("marcacoes")) || [];
+        let marcacoesData = JSON.parse(localStorage.getItem("pedidos")) || [];
         let m = marcacoesData.find(objeto => objeto.id_marcacao === idMarcacao) || {}
         marcacoesData.splice(m, 1)
-        localStorage.setItem("marcacoes", JSON.stringify(marcacoesData))
+        localStorage.setItem("pedidos", JSON.stringify(marcacoesData))
         m.funcResponsavel = this.funcionarioSelecionado
         let reservasData = JSON.parse(localStorage.getItem("reservas")) || [];
         reservasData.push(m)
