@@ -19,13 +19,13 @@
             </thead>
             <tbody>
               <tr v-for="(item, index) in tabelaDados" :key="index">
-                <td>{{ item.id_marcacao }}</td>
-                <td>{{ item.id_atividade }}</td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.idAtividade }}</td>
                 <td>{{ item.id_cliente }}</td>
                 <td>{{ item.dataReserva }}</td>
                 <td>{{ item.horaInicio }}:{{ item.horaFim }}</td>
-                <td>{{ item.n_pessoas }}</td>
-                <td>{{ item.funcResponsavel }}</td>
+                <td>{{ item.numPessoas }}</td>
+                <td>{{ item.responsavel }}</td>
                 <td>Ver Detalhes</td>
               </tr>
             </tbody>

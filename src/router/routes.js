@@ -18,24 +18,24 @@ const routes = [
   {
     path: "/",
     component: DashboardLayout,
-    redirect: "/dashboard",
+    redirect: "/pedidos",
     children: [
-      {
+      /*{
         path: "dashboard",
         name: "dashboard",
         component: Dashboard,
-      },
-      {
+      },*/
+      /*{
         path: "gerir_atividades",
         name: "gerir atividades",
         component: GerirAtividades,
-      },
+      },*/
       {
         path: "notifications",
         name: "notifications",
         component: Notifications,
       },
-      {
+      /*{
         path: "icons",
         name: "icons",
         component: Icons,
@@ -54,7 +54,7 @@ const routes = [
         path: "table-list",
         name: "table-list",
         component: TableList,
-      },
+      },*/
       {
         path: "pedidos",
         name: "pedidos",

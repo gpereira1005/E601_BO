@@ -18,13 +18,13 @@
             </thead>
             <tbody>
               <tr v-for="(item, index) in tabelaDados" :key="index">
-                <td>{{ item.id_marcacao }}</td>
-                <td>{{ item.id_atividade }}</td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.idAtividade }}</td>
                 <td>{{ item.id_cliente }}</td>
                 <td>{{ item.dataReserva }}</td>
                 <td>{{ item.horaInicio }}:{{ item.horaFim }}</td>
-                <td>{{ item.n_pessoas }}</td>
-                <td><router-link :to="'ver_pedido/'+ item.id_marcacao">Ver Detalhes</router-link></td>
+                <td>{{ item.numPessoas }}</td>
+                <td><router-link :to="'ver_pedido/'+ item.id">Ver Detalhes</router-link></td>
               </tr>
             </tbody>
           </table>

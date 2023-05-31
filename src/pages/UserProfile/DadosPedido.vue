@@ -6,7 +6,7 @@
           <div class="col-md-5">
             <label>Atividade</label>
             <div class="dados">
-              <p>{{ marcacoes.id_atividade }}</p>
+              <p>{{ marcacoes.idAtividade }}</p>
             </div>
           </div>
           <div class="col-md-5">
@@ -18,7 +18,7 @@
           <div class="col-md-2">
             <label>Nº Pessoas</label>
             <div class="dados">
-              <p>{{ marcacoes.n_pessoas }}</p>
+              <p>{{ marcacoes.numPessoas }}</p>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@
           <div class="col-md-6">
             <label>Telefone</label>
             <div class="dados">
-              <p>{{ marcacoes.responsavel.telefone }}</p>
+              <p>{{ marcacoes.responsavel.telemovel }}</p>
             </div>
           </div>
           <div class="col-md-6">
@@ -76,15 +76,15 @@
         <h1 class="dados_cat">Dados para Faturação</h1>
         <div class="row">
           <div class="col-md-6">
-            <label>Morada</label>
+            <label>Nome</label>
             <div class="dados">
-              <p>{{ marcacoes.dadosFaturacao.morada }}</p>
+              <p>{{ marcacoes.dadosFaturacao.nome }}</p>
             </div>
           </div>
           <div class="col-md-6">
-            <label>Nº Utente</label>
+            <label>Morada</label>
             <div class="dados">
-              <p>{{ marcacoes.dadosFaturacao.numeroUtente }}</p>
+              <p>{{ marcacoes.dadosFaturacao.morada }}</p>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
           <div class="col-md-6">
             <label>Nº Contribuinte</label>
             <div class="dados">
-              <p>{{ marcacoes.dadosFaturacao.numeroContribuinte }}</p>
+              <p>{{ marcacoes.dadosFaturacao.nif }}</p>
             </div>
           </div>
           <div class="col-md-6">
@@ -144,7 +144,7 @@ export default {
     const idMarcacao = this.$route.params.id;
     let marcacoesData = JSON.parse(localStorage.getItem("pedidos")) || {};
     return {
-      marcacoes: marcacoesData.find(objeto => objeto.id_marcacao === idMarcacao) || {},
+      marcacoes: marcacoesData.find(objeto => objeto.id === idMarcacao) || {},
       funcionarioSelecionado: null,
       type: ["", "info", "success", "warning", "danger"],
     };
@@ -154,10 +154,10 @@ export default {
       if (this.funcionarioSelecionado !== null) {
         const idMarcacao = this.$route.params.id;
         let marcacoesData = JSON.parse(localStorage.getItem("pedidos")) || [];
-        let m = marcacoesData.find(objeto => objeto.id_marcacao === idMarcacao) || {}
+        let m = marcacoesData.find(objeto => objeto.id === idMarcacao) || {}
         marcacoesData.splice(m, 1)
         localStorage.setItem("pedidos", JSON.stringify(marcacoesData))
-        m.funcResponsavel = this.funcionarioSelecionado
+        m.responsavel = this.funcionarioSelecionado
         let reservasData = JSON.parse(localStorage.getItem("reservas")) || [];
         reservasData.push(m)
         localStorage.setItem("reservas", JSON.stringify(reservasData))
