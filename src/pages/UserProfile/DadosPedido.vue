@@ -1,18 +1,18 @@
 <template>
-  <card class="card" :title="`Dados Pedido #${marcacoes.id_atividade}`">
+  <card class="card" :title="`Dados Pedido #${marcacoes.id}`">
     <div>
       <form @submit.prevent>
         <div class="row">
           <div class="col-md-5">
             <label>Atividade</label>
             <div class="dados">
-              <p>{{ marcacoes.idAtividade }}</p>
+              <p>{{ getNomeAtividade(marcacoes.idAtividade) }}</p>
             </div>
           </div>
           <div class="col-md-5">
             <label>Cliente</label>
             <div class="dados">
-              <p>{{ marcacoes.id_cliente }}</p>
+              <p>{{ getNomeCliente(marcacoes.id_cliente) }}</p>
             </div>
           </div>
           <div class="col-md-2">
@@ -99,7 +99,7 @@
           <div class="col-md-6">
             <label>Código Postal</label>
             <div class="dados">
-              <p>{{ marcacoes.dadosFaturacao.codigoPostal }}</p>
+              <p>{{ marcacoes.dadosFaturacao.codigopostal }}</p>
             </div>
           </div>
         </div>
@@ -109,9 +109,9 @@
               <label>Atribua um funcionário responsável</label>
               <select class="custom-select" v-model="funcionarioSelecionado">
                 <option disabled value="">Selecione uma opção</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="1">Funcionário 1</option>
+                <option value="2">Funcionário 2</option>
+                <option value="3">Funcionário 3</option>
               </select>
             </div>
           </div>
@@ -144,7 +144,7 @@ export default {
     const idMarcacao = this.$route.params.id;
     let marcacoesData = JSON.parse(localStorage.getItem("pedidos")) || {};
     return {
-      marcacoes: marcacoesData.find(objeto => objeto.id === idMarcacao) || {},
+      marcacoes: marcacoesData.find(objeto => objeto.id == idMarcacao) || {},
       funcionarioSelecionado: null,
       type: ["", "info", "success", "warning", "danger"],
     };
@@ -154,10 +154,11 @@ export default {
       if (this.funcionarioSelecionado !== null) {
         const idMarcacao = this.$route.params.id;
         let marcacoesData = JSON.parse(localStorage.getItem("pedidos")) || [];
-        let m = marcacoesData.find(objeto => objeto.id === idMarcacao) || {}
+        let m = marcacoesData.find(objeto => objeto.id == idMarcacao) || {}
         marcacoesData.splice(m, 1)
         localStorage.setItem("pedidos", JSON.stringify(marcacoesData))
-        m.responsavel = this.funcionarioSelecionado
+        m.funcResponsavel = this.funcionarioSelecionado
+        m.estado = "Aceite"
         let reservasData = JSON.parse(localStorage.getItem("reservas")) || [];
         reservasData.push(m)
         localStorage.setItem("reservas", JSON.stringify(reservasData))
@@ -186,6 +187,16 @@ export default {
         type: "warning",
       });
     },
+    getNomeAtividade(id){
+      let atividades = JSON.parse(localStorage.getItem('atividades'));
+      let atividade = atividades.find(a => a.id === id);
+      return atividade.nome;
+    },
+    getNomeCliente(id){
+      let clientes = JSON.parse(localStorage.getItem('utilizadores'));
+      let cliente = clientes.find(a => a.id === id);
+      return cliente.nome;
+    }
   },
 };
 </script>

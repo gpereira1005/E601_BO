@@ -13,6 +13,8 @@ import TableList from "@/pages/TableList.vue";
 import Pedidos from "@/pages/Pedidos.vue";
 import VerPedido from "@/pages/VerPedido.vue";
 import Reservas from "@/pages/Reservas.vue";
+import Atividades from "@/pages/Atividades.vue";
+import EditarAtividade from "@/pages/EditarAtividade.vue";
 
 const routes = [
   {
@@ -69,6 +71,16 @@ const routes = [
         path: 'reservas',
         name: 'reservas',
         component: Reservas,
+      },
+      {
+        path: 'atividades',
+        name: 'atividades',
+        component: Atividades,
+      },
+      {
+        path: 'editar_atividade/:id',
+        name: 'editar atividade',
+        component: EditarAtividade,
       }
     ],
   },

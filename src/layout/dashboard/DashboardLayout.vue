@@ -5,7 +5,7 @@
         <!----<sidebar-link to="/dashboard" name="Dashboard" icon="ti-panel" />-->
         <sidebar-link to="/pedidos" name="Pedidos" icon="ti-pencil-alt" />
         <sidebar-link to="/reservas" name="Reservas" icon="ti-agenda" />
-        <!----<sidebar-link to="/gerir_atividades" name="Atividades" icon="ti-folder" />-->
+        <sidebar-link to="/atividades" name="Atividades" icon="ti-folder" />
         <!----<sidebar-link to="/notifications" name="Funcionários" icon="ti-user" />-->
         <!----<sidebar-link to="/typography" name="Typography" icon="ti-text" />-->
         <!----<sidebar-link to="/icons" name="Icons" icon="ti-pencil-alt2" />-->

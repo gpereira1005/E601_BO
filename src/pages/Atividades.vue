@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <h4>Pedidos de Reserva</h4>
+      <h4>Atividades</h4>
       <card>
         <div slot="raw-content" class="table-responsive">
           <table class="table table-striped">
@@ -9,22 +9,19 @@
               <tr>
                 <th>Id</th>
                 <th>Atividade</th>
-                <th>Cliente</th>
-                <th>Data</th>
-                <th>Horário</th>
-                <th>Nº Pessoas</th>
-                <th></th>
+                <th>Região</th>
+                <th>Dificuldade</th>
+                <th>Preço</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(item, index) in tabelaDados" :key="index">
                 <td>{{ item.id }}</td>
-                <td>{{ getNomeAtividade(item.idAtividade) }}</td>
-                <td>{{ getNomeCliente(item.id_cliente) }}</td>
-                <td>{{ item.dataReserva }}</td>
-                <td>{{ item.horaInicio }}:{{ item.horaFim }}</td>
-                <td>{{ item.numPessoas }}</td>
-                <td><router-link :to="'ver_pedido/'+ item.id">Ver Detalhes</router-link></td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.regiao }}</td>
+                <td>{{ item.dificuldade }}</td>
+                <td>{{ item.preco }}€</td>
+                <td><router-link :to="'editar_atividade/'+ item.id">Editar</router-link></td>
               </tr>
             </tbody>
           </table>
@@ -46,24 +43,12 @@ export default {
     };
   },
   mounted() {
-    let dadosLocalStorage = JSON.parse(localStorage.getItem('pedidos'));
+    let dadosLocalStorage = JSON.parse(localStorage.getItem('atividades'));
     console.log(dadosLocalStorage)
     if (dadosLocalStorage) {
       this.tabelaDados = dadosLocalStorage;
     }
   }, 
-  methods: {
-    getNomeAtividade(id){
-      let atividades = JSON.parse(localStorage.getItem('atividades'));
-      let atividade = atividades.find(a => a.id === id);
-      return atividade.nome;
-    },
-    getNomeCliente(id){
-      let clientes = JSON.parse(localStorage.getItem('utilizadores'));
-      let cliente = clientes.find(a => a.id === id);
-      return cliente.nome;
-    }
-  },
 };
 </script>
 <style></style>
